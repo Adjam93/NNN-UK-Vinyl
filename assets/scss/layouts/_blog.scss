@@ -1,0 +1,25 @@
+@use '../abstracts' as a;
+@forward '../components/blog-card';
+
+.blog-posts{
+
+    &__title{
+        font-size: var(--fs-xl);
+        margin-bottom: 0.5em;
+    }
+}
+
+.blog-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+    @include a.atExtraSmall{
+
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+
+    }
+
+    gap: 2em;
+}
+
+

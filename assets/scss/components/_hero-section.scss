@@ -1,0 +1,193 @@
+@use '../abstracts/' as a;
+
+.hero-section {
+    display: grid;
+    place-items: center;
+    background: a.$mainColour;
+    position: relative;
+
+    @include a.atLarge{
+        background: transparent;
+    }
+
+    @include a.atLarge{
+     /*   min-height: 82vh;*/
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(10, 1fr);
+    }
+
+    .inner {
+        display: none;
+
+        @include a.atLarge{
+            display: block;
+            background: a.$mainColour;
+            width: 100%;
+            height: 100%;
+            grid-column: 1 / -1;
+            grid-row: 1 / 10;
+        }
+       
+       
+    }
+
+    // .hero-cta {
+
+    //     /*z-index: 99;*/
+    //     grid-row: 1 / -1;
+    //     grid-column: 1 / -1;
+    //     background: a.$mainColourDark;
+    //     opacity: 0.8;
+    //     color: #fff;
+    //     padding: 1.5em 0.8em;
+    //     width: auto; 
+    //     margin: 0.8em;
+
+    //     @include a.atSmall {
+    //         padding: 2em;
+    //         width: 100%;
+    //         margin: 0;
+    //     }
+
+    //     @include a.atLarge {
+    //        /* width: min(100% - 2rem,1250px);
+    //         margin-inline: auto;*/
+    //         z-index: 1;
+    //         opacity: 1;
+    //         background: transparent;
+    //         grid-column: 1 / 3;
+    //         grid-row: 3 / 8;
+    //         padding: 0 0 0 2em;
+    //         width: auto;
+    //         justify-self: end;
+    //     }
+
+    //     h1 {
+    //         font-size: var(--fs-xl);
+    //         line-height: 1.1;
+    //     }
+
+    //     p {
+    //         margin-block: 2.5em;
+    //         line-height: 1.8;
+    //         max-width: 75ch;
+    //     }
+
+    //     .cta-btn a {
+    //         background: #000;
+    //         @include a.atLarge {
+    //             background: a.$mainColourDark;
+    //         }
+    //         font-family: 'Roboto', sans-serif;
+    //         padding: 1em 2em;
+    //         color: #fff;
+    //         text-transform: uppercase;
+    //         border: none;
+    //         font-size: var(--fs-medium);
+    //     }
+
+    // }
+
+    /* NEW */
+    .hero-cta {
+
+        /*z-index: 99;*/
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+       
+        color: #fff;
+        padding: 1.5em 0.8em;
+        width: auto; 
+        margin: 0.8em 0;
+        
+        background: linear-gradient(to bottom, #363636d6, #4c4c4c99, #363636d6);
+
+       /* height: 100%;*/
+        z-index: 1;
+       /* display: grid;
+          place-content: center;*/
+
+
+
+        @include a.atSmall {
+            padding: 2em;
+            width: 100%;
+            margin: 0;
+           /* background: a.$mainColourDark;*/
+           /* opacity: 0.8;*/
+            height: auto;
+        }
+
+        @include a.atLarge {
+           /* width: min(100% - 2rem,1250px);
+            margin-inline: auto;*/
+            z-index: 1;
+            opacity: 1;
+            background: transparent;
+            grid-column: 1 / 3;
+            grid-row: 3 / 8;
+            padding: 0 0 0 2em;
+            width: auto;
+            justify-self: end;
+        }
+
+        h1 {
+            font-size: var(--fs-xl);
+            line-height: 1.1;
+        }
+
+        p {
+            margin-block: 2.5em;
+            line-height: 1.8;
+            max-width: 75ch;
+        }
+
+        .cta-btn {
+            padding: 1em 0;
+            
+            a {
+                background: #000;
+                @include a.atLarge {
+                    background: a.$mainColourDark;
+                }
+                font-family: 'Roboto', sans-serif;
+                padding: 1em 2em;
+                color: #fff;
+                text-transform: uppercase;
+                border: none;
+                font-size: var(--fs-medium);
+            }
+        }
+    }
+
+
+    .hero-img {
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+       
+        @include a.atLarge {
+           /* position: absolute;
+            top: 2rem;
+            right: 0;*/
+            padding: 3em 0 0 0;
+            grid-column: 3 / -1;
+            justify-self: end;
+        }
+
+
+        img{
+            @include a.atLarge {
+               /* width: 810px;*/
+                // max-height: 900px;
+                max-height: 1025px;
+            }
+            @include a.atExtraLarge {
+                width: auto;
+                max-height: none;
+            }
+
+            height: auto;
+        }
+    }
+
+}

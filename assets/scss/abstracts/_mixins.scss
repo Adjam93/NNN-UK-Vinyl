@@ -1,0 +1,65 @@
+/*
+* Anything less than 530px are the base styles that start at mobile first sizes 
+* More breakpoints can be added for specific device sizes, orientations etc.
+*/
+
+/*Screen sizes at 530px or larger*/
+
+/*400px or larger*/
+@mixin atExtraSmall {
+
+    @media (min-width: 25em) {
+        @content;
+    }
+
+}
+
+
+/*528px or larger*/
+@mixin atSmall {
+
+    @media (min-width: 33em) {
+        @content;
+    }
+
+}
+
+/*800px or larger*/
+@mixin atMedium {
+
+    @media (min-width: 50em) {
+        @content;
+    }
+
+}
+
+@mixin atMediumLarge {
+
+    @media (min-width: 55em) {
+        @content;
+    }
+
+}
+
+/*1010px or larger*/
+@mixin atLarge {
+
+    @media (min-width: 65em) {
+        @content;
+    }
+
+}
+
+/*2080px or larger*/
+@mixin atExtraLarge {
+
+    @media (min-width: 130em) {
+        @content;
+    }
+
+}
+  
+@mixin containerWidth{
+    width: min(100% - 2rem, 1350px);
+    margin-inline: auto;
+}

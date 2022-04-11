@@ -1,0 +1,240 @@
+@use '../../abstracts/' as a;
+
+.shop {
+
+    nav.woocommerce-breadcrumb {
+        display: none;
+    }
+
+    main.page-wrapper {
+        display: block;
+    }
+
+    @include a.atLarge{
+
+        main.page-wrapper {
+            display: grid;
+           /* gap: 2em;*/
+            grid-auto-flow: column;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .shop-wrapper{
+            grid-column: 2 / -1;
+        }
+    
+    }
+
+
+}
+
+
+.woocommerce {
+
+    .woocommerce-result-count {
+        float: none;
+        margin: 0;
+    }
+
+    .woocommerce-ordering {
+         margin: 0;
+         float: none;
+    }
+}
+
+
+.list-sort {
+
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1em 0 3em 0;
+    justify-content: space-between;
+    gap: 1em;
+    align-items: center;
+   /* @include a.atLarge{
+
+        justify-content: flex-end;
+    
+    }*/
+ 
+    .view-btns{
+        display: flex;
+        flex-wrap: wrap-reverse;
+        row-gap: 1em;
+
+        .view-btn {
+            padding: 8px 12px;
+            background: #fff;
+            color: var(--clr-dark);
+            border: none;
+            margin-right: 10px;
+            cursor: pointer;
+            transition: all 0.7s;
+    
+            &.active{
+                background: var(--clr-dark);
+                color: #fff;
+            }
+    
+            &:hover{
+                background: var(--clr-dark);
+                color: #fff;
+            }
+        }
+        i{
+            margin-right: 7px;
+        }
+    }
+ }
+
+
+.product-grid{
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+    gap: 2em;
+    
+    .product-image{
+
+        img{
+            width: 200px;
+            aspect-ratio: 1;
+            object-fit: cover;
+            object-position: top left;
+        }
+    }
+
+    .product-title{
+
+        a{
+            color: var(--clr-primary);
+        }
+        h2{
+            font-size: var(--fs-small);
+            line-height: 1.4;
+            margin: 0.8em 0;
+            color: var(--clr-blue);
+        }
+        
+    }    
+   
+    .list-description{
+        display: none;
+    }
+
+    @include a.atMedium{
+
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+
+    }
+
+    &.list-view {
+        grid-auto-flow: row;
+        grid-template-columns: none;
+
+        .product-column {
+            display: grid;
+            grid-auto-flow: row;
+            grid-auto-columns: auto;
+            gap: 1em;
+            padding-bottom: 1em;
+            border-bottom: 1px solid #555;
+            grid-template-columns: 150px 1fr;
+            grid-template-areas:
+            "img title"
+            "desc desc"
+            "price price";
+        }
+
+        .product-image img {
+            width: 150px;
+        }
+
+        @include a.atExtraSmall {
+            .product-column {
+                grid-auto-flow: column;
+            }
+        }
+
+        @include a.atSmall{
+
+            .product-column {
+                grid-template-columns: 180px 1fr;
+                grid-template-areas:
+                "img title"
+                "img desc"
+                "img price";
+
+            }
+
+            .product-image img {
+                width: 100%;
+            }
+    
+        }
+
+        @include a.atMedium{
+
+            .product-column {
+                grid-template-columns: 200px 1fr;
+            }
+    
+        }
+
+        /*.product-content{
+
+            .list-description{
+                display: block;
+            }
+
+            h2{
+                margin: 0 0 0.8em 0;
+            }
+        } */
+
+        .product-image {
+            grid-area: img;
+        }
+
+        .product-title {
+            grid-area: title;
+
+            h2 {
+                color: var(--clr-blue);
+                font-size: calc( var(--fs-medium) * 0.95 );
+                margin: 0;
+            }
+
+            @include a.atExtraSmall{
+
+                h2 {
+                    font-size: var(--fs-medium);
+                }
+    
+            }
+
+        }
+
+        .list-description {
+            grid-area: desc;
+            font-size: calc( var(--fs-small) * 0.9);
+            display: block;
+
+            @include a.atExtraSmall{
+
+                font-size: var(--fs-base);
+    
+            }
+
+        }
+
+        .product-price {
+            grid-area: price;
+        }
+
+    }
+
+
+}
+
+ 

@@ -1,0 +1,79 @@
+@use '../abstracts' as a;
+
+.blog-card {
+    display: flex;
+    flex-direction: column;
+    background: a.$mainColour;
+    padding: 2em;
+    color: #fff;
+    margin-bottom: 4em;
+    position: relative;
+    z-index: 1;
+
+    &:nth-child(even)::after {
+        background: #5b7c99;
+        filter: brightness(150%);
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+    }
+
+    &__link {
+        color: #fff;
+        margin-bottom: 1em;
+    }
+
+
+    &__thumbnail{
+
+        &-img {
+            width: 100%;
+            aspect-ratio: 1 / 0.9;
+            object-fit: cover;
+            height: auto;
+        }
+    }
+
+    $parentSelector: &;
+    
+    &__meta {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        #{$parentSelector}__profile-meta {
+            margin-block: 1em;
+        }
+
+        #{$parentSelector}__excerpt {
+            flex: 1;
+            margin: 1em 0 2em 0;
+        }
+
+        #{$parentSelector}__read-more-btn {
+            padding: 0.5em 1.5em;
+            background: #5b7c99;
+            color: #fff;
+            align-self: flex-start;
+            position: relative;
+            z-index: 1;
+
+            &:hover::after,
+            &:focus::after{
+                filter: brightness(125%);
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: a.$mainColour;
+                filter: brightness(60%);
+                z-index: -1;
+                transition: filter 350ms ease-in-out;
+            }
+        }
+    }
+
+}

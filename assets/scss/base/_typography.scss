@@ -1,0 +1,41 @@
+@use '../abstracts' as a;
+
+:root {
+   /* --ff-body: "Heebo", sans-serif;
+    --ff-heading: "Oswald", sans-serif;*/
+  
+    --clr-primary-400: hsl(60 100% 50%);
+    --clr-neutral-900: hsl(0 0% 0%);
+    --clr-neutral-100: hsl(0 0% 100%);
+  
+    /*--fs-xl: clamp(2rem, 2vw + 1rem, 3.5rem);
+    --fs-large: 1.85rem;
+    --fs-medium: 1.25rem;
+    --fs-base: 1rem;
+    --fs-small: 0.85rem;*/
+
+    --fs-xl: clamp(2.185rem, 2vw + 1rem, 5rem);
+    --fs-large: 1.65rem;
+    --fs-mediumLarge: 1.45em;
+    --fs-medium: 1.125em;
+    --fs-base: 1rem;
+    --fs-small: 0.9rem;
+
+
+    /*
+    --fs-xl: clamp(3.5rem, 12vw + 1rem, 12rem);
+    --fs-600: 2rem;
+    --fs-400: 1rem;*/
+}
+
+
+@include a.atMedium {
+
+    :root {
+
+        //--fs-xl: clamp(2.5rem, 5.5vw + 1rem, 6.5rem);
+        --fs-large: 2rem;
+        --fs-medium: 1.25rem;
+        
+    }
+}

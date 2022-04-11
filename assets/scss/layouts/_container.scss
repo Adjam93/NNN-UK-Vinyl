@@ -1,0 +1,15 @@
+@use '../abstracts' as a;
+
+
+.container{
+
+    /*margin: 0 auto;
+    width: a.$pageContainerWidth;
+    max-width: 100%;*/
+    @include a.containerWidth;
+    padding: 3em 0;
+    @include a.atMedium{
+        padding: 5em 0;
+    }
+
+}
