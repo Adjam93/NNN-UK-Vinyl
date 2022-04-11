@@ -15,7 +15,7 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
 
-        <div class="cta-btn"><a href="#latest-records">View Records</a></div>
+        <div class="cta-btn"><a href="#latest-records">View Records - Test Update</a></div>
 
     </div>
 
