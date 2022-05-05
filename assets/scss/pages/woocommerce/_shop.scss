@@ -91,7 +91,8 @@
 .product-grid{
 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+    //grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(max(20%,135px), 1fr));
     gap: 2em;
     
     .product-image{
@@ -124,7 +125,7 @@
 
     @include a.atMedium{
 
-        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(max(17%,135px), 1fr));
 
     }
 
