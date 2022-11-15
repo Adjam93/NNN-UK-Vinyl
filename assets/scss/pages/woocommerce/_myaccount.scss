@@ -1,0 +1,10 @@
+@use '../../abstracts/' as a;
+
+.woocommerce-MyAccount-navigation {
+    ul{
+         li {
+            padding: 1rem;
+            border-bottom: 1px solid;
+        }
+    }
+}
