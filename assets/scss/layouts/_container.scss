@@ -8,7 +8,7 @@
     max-width: 100%;*/
     @include a.containerWidth;
     padding: 3em 0;
-    @include a.atMedium{
+    @include a.at768{
         padding: 5em 0;
     }
 

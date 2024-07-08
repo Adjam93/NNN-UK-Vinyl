@@ -10,7 +10,7 @@
         display: block;
     }
 
-    @include a.atLarge{
+    @include a.at992{
 
         main.page-wrapper {
             display: grid;
@@ -51,7 +51,7 @@
     justify-content: space-between;
     gap: 1em;
     align-items: center;
-   /* @include a.atLarge{
+   /* @include a.at992{
 
         justify-content: flex-end;
     
@@ -123,7 +123,7 @@
         display: none;
     }
 
-    @include a.atMedium{
+    @include a.at768{
 
         grid-template-columns: repeat(auto-fit, minmax(max(17%,135px), 1fr));
 
@@ -151,13 +151,13 @@
             width: 150px;
         }
 
-        @include a.atExtraSmall {
+        @include a.at400 {
             .product-column {
                 grid-auto-flow: column;
             }
         }
 
-        @include a.atSmall{
+        @include a.at576{
 
             .product-column {
                 grid-template-columns: 180px 1fr;
@@ -174,7 +174,7 @@
     
         }
 
-        @include a.atMedium{
+        @include a.at768{
 
             .product-column {
                 grid-template-columns: 200px 1fr;
@@ -206,7 +206,7 @@
                 margin: 0;
             }
 
-            @include a.atExtraSmall{
+            @include a.at400{
 
                 h2 {
                     font-size: var(--fs-medium);
@@ -221,7 +221,7 @@
             font-size: calc( var(--fs-small) * 0.9);
             display: block;
 
-            @include a.atExtraSmall{
+            @include a.at400{
 
                 font-size: var(--fs-base);
     

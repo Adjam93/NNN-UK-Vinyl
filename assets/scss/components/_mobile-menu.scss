@@ -8,7 +8,7 @@
     transition: opacity 750ms ease-in-out, max-height 750ms ease-in-out;
     pointer-events: none;
 
-    @include a.atLarge {
+    @include a.at992 {
         display: none;
     }
 
@@ -57,7 +57,7 @@
      cursor: pointer;
      transition: all .5s ease-in-out;
 
-     @include a.atLarge {
+     @include a.at992 {
         display: none;
     }
  }

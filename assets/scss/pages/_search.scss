@@ -38,7 +38,7 @@
                              "read-more read-more read-more";
         grid-template-columns: 1fr 1fr;
 
-       /* @include a.atExtraSmall {
+       /* @include a.at400 {
     
             grid-template-areas: "img title title"
             "desc desc desc"
@@ -48,7 +48,7 @@
 
         }*/
 
-        @include a.atSmall {
+        @include a.at576 {
 
             gap: 2em;
             grid-template-areas: "img title title"
@@ -59,7 +59,7 @@
   
           }
 
-      /*  @include a.atMedium {
+      /*  @include a.at768 {
 
           
         }*/

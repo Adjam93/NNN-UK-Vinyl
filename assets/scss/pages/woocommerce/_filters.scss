@@ -68,7 +68,7 @@ aside.shop-sidebar {
 }
 
 
-@include a.atSmall {
+@include a.at576 {
 
     aside.shop-sidebar {
 
@@ -78,7 +78,7 @@ aside.shop-sidebar {
 }
 
 
-@include a.atLarge{
+@include a.at992{
 
     .sidebar-wrapper,
     aside.shop-sidebar {
@@ -206,7 +206,7 @@ button.awf-reset-btn {
     transform: scale(1);
 }
 
-@include a.atLarge{
+@include a.at992{
 
     .awf-filters-container .awf-filter-container.awf-range-slider-container, .awf-filters-container .awf-taxonomy-range-slider-container{
         margin: 70px 30px 70px 20px;

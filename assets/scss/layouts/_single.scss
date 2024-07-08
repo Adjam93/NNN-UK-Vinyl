@@ -22,7 +22,7 @@
         color: #fff;
         box-shadow: 6px 6px 5px 0px #323232;
 
-        @include a.atSmall{
+        @include a.at576{
             flex-direction: row;
             width: max-content;
             gap: 2em;

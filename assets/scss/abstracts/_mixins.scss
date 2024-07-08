@@ -6,60 +6,56 @@
 /*Screen sizes at 530px or larger*/
 
 /*400px or larger*/
-@mixin atExtraSmall {
+//@mixin atExtraSmall {
+@mixin at400 {
 
-    @media (min-width: 25em) {
+    @media (min-width: 400px) {
         @content;
     }
 
 }
 
 
-/*528px or larger*/
-@mixin atSmall {
+/*576px or larger*/
+//@mixin at576 {
+@mixin at576 {
 
-    @media (min-width: 33em) {
+    @media (min-width: 576px) {
         @content;
     }
 
 }
 
 /*800px or larger*/
-@mixin atMedium {
+//@mixin at768 {
+@mixin at768 {
 
-    @media (min-width: 50em) {
+    @media (min-width: 768px) {
         @content;
     }
 
 }
 
-@mixin atMediumLarge {
+/*992px or larger*/
+//@mixin at992 {
+@mixin at992 {
 
-    @media (min-width: 55em) {
+    @media (min-width: 992px) {
         @content;
     }
 
 }
 
-/*1010px or larger*/
-@mixin atLarge {
+/*1440px or larger*/
+@mixin at1440 {
 
-    @media (min-width: 65em) {
-        @content;
-    }
-
-}
-
-/*2080px or larger*/
-@mixin atExtraLarge {
-
-    @media (min-width: 130em) {
+    @media (min-width: 1440px) {
         @content;
     }
 
 }
   
 @mixin containerWidth{
-    width: min(100% - 2rem, 1350px);
+    width: min(100% - 2rem, 1250px);
     margin-inline: auto;
 }
