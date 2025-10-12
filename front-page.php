@@ -1,103 +1,110 @@
 <?php get_header(); ?>
 
-
 <div class="hero-section">
 
-    <div class="inner"></div>
-
     <div class="hero-cta">
+        <div class="hero-box">
+            <h1>Preloved Vinyl, Tapes & CDs</h1>
 
-        <h1>Records, Tapes and CDs</h1>
+            <p>
+                From Pop to Punk - expand your collection with some of the best rarities and must-haves from a trader with over 40 years experience collecting and selling.
+            </p>
 
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco.  
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
-
-        <div class="cta-btn"><a href="#latest-records">View Records</a></div>
-
+            <div class="browse-btn ">
+                <a class="cta-btn" href="<?= home_url() . '/shop' ?>">Browse Records</a>
+            </div>
+        </div>
     </div>
 
-    <div class="hero-img">
-        <img src="<?php echo get_template_directory_uri() . '/images/hero.png' ?>" alt="">
-    </div>
+   <img class="hero-img" src="<?php echo get_template_directory_uri() . '/images/test-img2.png' ?>" alt="">
 
 </div>
 
 <main>
 
-    <div class="container">
+    <div class="content-grid latest-records-content">
+
+        <h2 class="latest fs-xl">Latest Records</h2>
 
         <div class="latest-records" id="latest-records">
 
-            <h2 class="latest">Latest Records</h2>
-
             <div class="records-grid">
 
-            <?php get_template_part( 'template-parts/recent', 'records' )?>
+                <?php get_template_part( 'template-parts/recent', 'records' ); ?>
                 
             </div>
+        </div>
+
+        <div class="progress-arrows">
+            
+           <div class="position-relative">
+                <div class="progress-bar" style="width: 8%"></div>
+                <div class="full-progress-bar"></div>
+            </div> 
+
+            <div class="d-flex arrows">
+                <button id="prev-btn">
+                    <span class="d-grid">
+                       <?= file_get_contents( get_template_directory_uri() . '/images/svg/arrow-left.svg' ) ?>
+                    </span>
+                </button>
+                <button id="next-btn">
+                    <span class="d-grid">
+                        <?= file_get_contents( get_template_directory_uri() . '/images/svg/arrow-right.svg' ) ?>
+                    </span>
+                </button>
+            </div>
+
         </div>
 
     </div>
 
     <div class="delivery-banner">Information on delivery, payments etc......</div>
 
-    <div class="container">
+    <div class="content-grid">
 
-        <h2 class="genres-heading">Popular Genres</h2>
+        <h2 class="genres-heading fs-xl">Popular Genres</h2>
 
-        <div class="popular-genres">
-        <div class="loading"><img src="<?php echo get_template_directory_uri() . '/images/711.gif' ?>" /></div>
-
-            <div class="sidebar">
-
-                    <ul>    
-
-                        <?php 
-                        
-                            $args = array(
-                                'taxonomy'   => "product_cat",
-                                'orderby'    => 'name',
-                                'hide_empty' => 0,
-                            );
-
-                            $product_categories = get_terms( $args );
-                            $first_cat = true;
-
-                            foreach ( $product_categories as $cat ) : 
-
-                                $category_thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
-                                $image_url = wp_get_attachment_url( $category_thumbnail_id );
-
-                                if ( $cat->term_id == 16 || $cat->term_id == 15 ) {
-                                    continue; // skip 'uncategorized'
-                                }
-                            ?>
-
-                            <?php  if ( $first_cat ) : ?>
-
-                                <li class="genre-list-item active"><img src="<?php echo $image_url ?>" /><a class="genre-filter-cat active" data-category="<?= $cat->slug ?>" href="<?= get_category_link( $cat->term_id ); ?>"><? echo ucwords( $cat->name ) ?></a></li>
-                                <?php  $first_cat = false; ?>   
-
-                            <?php else : ?>
-                               
-                                <li class="genre-list-item"><img src="<?php echo $image_url ?>" /><a class="genre-filter-cat" data-category="<?= $cat->slug ?>" href="<?= get_category_link( $cat->term_id ); ?>"><? echo ucwords( $cat->name ) ?></a></li>
-                        
-
-                            <?php endif; endforeach; ?>
-
-                            <?php wp_reset_query();  // Restore global post data  ?> 
-
-                    </ul>
-                </div>
-
-                <div class="featured-genre">
+        <div class="featured-genres">
                    
-                    <?php get_template_part( 'template-parts/popular', 'genres' )?>
+            <div class="main-featured-genre">
+                <?php 
 
-                </div>               
+                    $args = array(
+                        'taxonomy'   => "product_cat",
+                        'hide_empty' => 0,
+                        'meta_key'=>'main_featured_genre',
+                        'orderby' => 'meta_value_num'
+                    );
+                
+                    $feat_genre = get_terms( 'product_cat', $args );
+
+                    foreach( $feat_genre as $genre ) : 
+                    
+                        $is_main_featured_genre = get_term_meta( $genre->term_id, 'main_featured_genre', true );
+                        $cat_thumb_id = get_term_meta( $genre->term_id, 'thumbnail_id', true );
+                        $genre_img = wp_get_attachment_image_src( $cat_thumb_id, 'full' );
+                        $genre_name = $genre->name;
+                        $genre_url = site_url() . '/product-category/' . $genre->slug;                
+                    
+                    ?>
+                    
+                        <?php if( $is_main_featured_genre ) : ?>
+                            <a href="<?= site_url() . '/shop?genre=' . $genre->slug; ?>">
+                                <img src="<?= $genre_img[0] ?>">
+                                <h3 class="fs-xl"><?= $genre_name ?></h3>
+                            </a>
+                        <?php endif; ?>
+
+                    <?php endforeach; wp_reset_query(); ?>
+
+            </div>
+
+            <div class="sub-genres">
+
+                <?php get_template_part( 'template-parts/popular', 'genres' ); ?> 
+
+            </div>            
 
         </div>
         
