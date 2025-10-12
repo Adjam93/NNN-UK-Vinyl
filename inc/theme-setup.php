@@ -20,29 +20,13 @@ function nnn_starter_theme_setup(){
 add_action( 'after_setup_theme', 'nnn_starter_theme_setup' );
 
 
-/**
- * Register Shop Page Sidebar
- */
-function nnn_widgets() {
+function add_last_nav_item( $items ) {
 
-    //Shop Sidebar
-    register_sidebar( 
+  return $items .= '<li class="login-link"><a href="my-account"><span>'.file_get_contents( get_template_directory_uri() . '/images/svg/person.svg' ).'</span> <span>Login/Register</span></a></li>';
 
-        array(
-
-            'name' => 'Shop Sidebar',
-            'id' => 'shop_sidebar',
-            'before_widget' => '<div id="%1$s" class="sidebar-content %2$s">',
-            'after_widget'  => '</div>',
-            'before_title' => '<h2>',
-            'after_title' => '</h2>'
-        )
-
-    );
-    
 }
 
-add_action( 'widgets_init', 'nnn_widgets' );
+add_filter( 'wp_nav_menu_items','add_last_nav_item' );
 
 
 /**
