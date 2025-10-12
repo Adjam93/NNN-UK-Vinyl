@@ -1,7 +1,6 @@
 <?php
 
 $cat_args = array(
-
     'taxonomy'   => "product_cat",
     'orderby'    => 'name',
     'hide_empty' => 0,
@@ -9,36 +8,31 @@ $cat_args = array(
 
 $product_categories = get_terms( $cat_args );
 
-$args = array(
+if ( !empty( $product_categories ) ) : ?>      
 
-    'limit'  => 6,
-    'status' => 'publish',
-    'category' => array ( sanitize_text_field( $product_categories[0]->slug ) ),
+   <?php foreach ( $product_categories as $cat ) :
 
-);
+        $is_main_featured_genre = get_term_meta( $cat->term_id, 'main_featured_genre', true );
+        $is_featured_genre = get_term_meta( $cat->term_id, 'featured_genre', true );
 
-$products = wc_get_products( $args );
-$category_info = get_term_by( 'slug', sanitize_text_field( $product_categories[0]->slug ), 'product_cat' );
+        $cat_thumb_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
+        $genre_img = wp_get_attachment_image_src( $cat_thumb_id, 'full' );
 
-if ( ! empty( $products ) ) : ?>
+        //$genre_slug = $cat->slug;
+        $genre_name = $cat->name;
+        $genre_url = site_url() . '/shop?genre=' . $cat->slug;
 
-<p><?php echo $category_info->description ?></p> 
-        
-<div class="featured-genre-records"> 
+    ?>
 
-   <?php foreach ( $products as $product ) : ?>
+        <?php if( !$is_main_featured_genre && $is_featured_genre ) : ?>
 
-        <div class="featured-record">
-            <a href="<?php echo site_url() . "/" . $product->slug ?>"><img src="<?php echo wp_get_attachment_image_src( $product->image_id, 'full' )[0] ?>" class="record-img"></a>
-            <div class="record-desc">
-                <h3><a href="<?php echo site_url() . "/" . $product->slug ?>"><?php echo $product->name ?></a></h3>
-            </div>  
-        </div>  
+            <a href="<?= $genre_url ?>">
+                <img src="<?= $genre_img[0] ?>">
+                <h3 class="fs-large"><?= $genre_name ?></h3>
+            </a>
+
+        <?php endif; ?>
 
     <?php endforeach; ?>
-
-</div>
-
-<a class="view-all-btn" href="<?php echo site_url() . "/" . "product-category" . "/" . $category_info->slug ?>">View All</a>       
 
 <?php endif; ?>
