@@ -1,287 +1,394 @@
 @use '../abstracts' as a;
-
 @forward '../components/mobile-menu';
+@forward '../components/header-search';
+@forward '../components/basket-menu';
 
-header{
+header {
 
-   /* position: sticky;
-    transition: top 0.7s;
-    top: -80px;   
-    z-index: 99;
-
-    &.sticky{
-        top: 0;
-    }*/
-
-    a{
+    a {
         color: #fff;
     }
-    
-    &.fixed{
 
-        .record-search{
-            top: 0;
-            z-index: 99;
-            position: fixed;
-            left: 0;
-            right: 0;
-            background: a.$mainColourDark;
-            width: 100%;
-            padding: 0;
+    background: #000;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    position: sticky;
 
-            .search-wrapper{
-                @include a.containerWidth;
-                max-width: 100%;
-                padding: 1em 0;
-            }
-        }
+    .container {
 
-       .header-wrapper .container.search .record-search .header-search-results.show-results {
-            top: 79%;
-        }
-
-
-        .header-wrapper .container.search .record-search .search-wrapper .search-overlay{
-            top: 59px
-        }
-
-    }
-}
-
-
-.header-wrapper{
-
-    background: a.$mainColourDark;
-    box-shadow: 0 0 4px 2px #646464;
-
-    .container{
-
-       
-       /* margin: 0 auto;
-        width: a.$pageContainerWidth;
-        max-width: 100%;*/
         @include a.containerWidth;
-        padding: 1em 0;   
+        padding: .7em 0;
+        transition: padding .5s;
       
+        .header-container {
+            display: grid;
+            column-gap: 3em;
+            align-items: center;
+            row-gap: 1em;
+            grid-template-areas: "stack";
 
-       /* @include a.atLarge {
-
-        }*/
-
-        .header-inner{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;    
-        }
-
-        .logo{
-
-            img{
-                max-height: 75px;
+            @include a.at992 {
+                grid-template-areas: 
+                "header-items"
+                "search";
             }
 
-            @include a.atExtraSmall {
+            .header-items-wrapper {
+                display: grid;
+                grid-area: stack;
+                grid-template-columns: 45px 1fr 1fr;
+                gap: 1em;
+                row-gap: 0;
+                transition: gap .5s;
 
-                img{
-                    max-height: 95px;
+                @include a.at440 {
+                    gap: 2em;
+                    row-gap: 0;
+                }
+
+                @include a.at992 {
+                    grid-area: header-items;
+                    grid-template-columns: max-content 1fr max-content;
+                    gap: 3em;
+                }
+            }
+
+            .logo {
+
+                img {
+                    max-height: 50px;
+                    transition: max-height .4s;
+                }
+
+                @include a.at360 {
+
+                    img {
+                        max-height: 58px;
+                    }
+                
+                }
+
+                @include a.at992 {
+
+                    img {
+                        max-height: 70px;
+                    }
+                
                 }
             
             }
-            
 
-          
-    
-           /* @include a.atLarge {
-                grid-column: auto;
-                display: block;
-            }*/
-        
-        }
-    
-    
-        .main-nav{
-    
-            display: none;
-
-            @include a.atLarge {
-                display: flex;
-                justify-content: center;
+            .nav-wrapper {
+                display: none;
+                gap: 2em;
                 align-items: center;
-            }
-    
-           /* .menu-main-menu-container {
-                height: 100%;
-            }*/
 
-            ul{
-                  /* display: -webkit-box; */
-                display: flex;
-                list-style: none;
-                flex-wrap: wrap;
-                height: 100%;
-                gap: 3em;
+                .login-link {
+                    display: none;
+                }
 
-                li{
+                @include a.at992 {
+                    display: flex;
+                }
 
-                    position: relative;
+                .main-nav {
+            
+                    display: none;
 
-                    a{
-                        font-size: var(--fs-medium);
-                        color: #fff;
-                    }
-                    &.nav-cart{
-                        color: #fff;
+                    @include a.at992 {
                         display: flex;
+                        justify-content: center;
                         align-items: center;
+                    }
+            
+                    ul {
+                        display: flex;
+                        list-style: none;
+                        flex-wrap: wrap;
+                        height: 100%;
+                        gap: 2em;
+                        align-items: center;
+                        padding: 0;
+                        margin: 0;
 
-                        i{
-                            margin-right: 10px;
-                            font-size: 20px;
+                        li {
+
+                            position: relative;
+
+                            a {
+                                font-size: var(--fs-medium);
+                                color: #fff;
+                            }
+                        
+                        }
+                    
+                    }
+                    
+                }
+
+            }
+
+            
+            .menu-buttons {
+                display: flex;
+                gap: .75em;
+                place-self: end;
+                align-self: center;
+
+                .account-search {
+                    display: grid;
+                    grid-template-areas: "stack";
+                }
+
+                .nav-button {
+                    width: 40px;
+                    height: 40px;
+                    background: #fff;
+                    border-radius: 10px;
+                    border: none;
+                    outline: none;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border: none;
+                    position: relative;
+                    transition: width .4s, height .4s;
+
+                    @include a.at992 {
+                        width: 45px;
+                        height: 45px;
+                    }
+
+                    svg {
+                        width: 100%;
+                        height: 100%;
+                         * {
+                            stroke: #000;
+                         }
+                    }
+
+                    .nav-basket-counter {
+                        position: absolute;
+                        width: 25px;
+                        height: 25px;
+                        background: red;
+                        border-radius: 100vw;
+                        top: -14px;
+                        left: 23px;
+                        color: #fff;
+                        font-weight: 600;
+                        opacity: 0;
+                        transition: opacity .5s;
+
+                        @include a.at992 {
+                           left: 28px;
+                        }
+
+                        &.active {
+                            opacity: 1;
                         }
                     }
+                    
+                    &.account, &.open-search-btn {
+                        grid-area: stack;
+                    }
+
+                    &.account {  
+
+                        display: none;
+                        @include a.at992 {
+                            display: block;
+                        }
+                        
+                        svg {
+                            scale: .9;
+                        }
+
+                    }
+
+                    &.open-search-btn { 
+
+                        display: block;
+                        @include a.at992 {
+                            display: none;
+                        }
+
+                    }
+                  
+                    &.basket-btn {
+                       
+                        &.search-active{
+                            z-index: 1;
+                        }
+
+                        &.active {
+                          z-index: 100001;
+                        }
+
+                        &::after {
+                            position: absolute;
+                            content: '';
+                            width: 0;
+                            height: 0;
+                            top: 100%;
+                            border-left: 15px solid #000000;
+                            border-right: 15px solid #000000;
+                            border-bottom: 15px solid #ffffff;
+                            opacity: 0;
+                            transition: opacity 0.2s;
+                        }
+
+                        &.active {
+                            &::after {
+                                opacity: 1;
+                                transition: opacity 0.6s;
+                            }
+                        }
+                    }  
                 }
-              
             }
-            
+
         }
-
- 
-
-    }
-
-    .container.search{
-
-        display: block;
-
-   
 
         .record-search {
             width: 100%;
-
-            .search-wrapper{
-                position: relative;
-
-               /* .spinner-img{
-                    position: absolute;
-                    top: 50px;
-                    z-index: 100;
-                    left: 0.5em;
-                    width: 40px;
-                    display: none;
-                }*/
-            
-                .search-overlay{
-                    position: absolute;
-                    top: 43px;
-                    z-index: 100;
-                    width: 100%;
-                    margin: 0 auto;
-                    display: none;
-                    height: 400px;
-                    left: 0;
-                    right: 0;
-                    margin-left: auto;
-                    margin-right: auto;
-                    background: rgba(163,163,163,.4);
-                    align-items: flex-start;
-
-
-                    .search-overlay-inner {
-                            display: flex;
-                            align-items: center;
-                            padding: 0.8em 1.5em;
-                            gap: 0.5em;
-                            color: #fff;
-                            background: #303030;
-                            font-size: var(--fs-medium);
-                            width: 100%;
-    
-                        .spinner-img {
-                            width: 40px;
-                        }
-    
-                    }
-    
-                }
-
-                
-            }
-
+            height: 100%;
+            position: relative;
+            grid-area: stack;
+            grid-column: 1 / -1;
+            background: #000;
+            translate: 0 -100%;
+            opacity: 0;
+            pointer-events: none;
+            transition: all .4s;
+            z-index: 1000;
            
-            input{
-                width: 100%;
-                border: none;
+            @include a.at992 {
+                grid-area: search;
+                translate: 0;
+                opacity: 1;
+                pointer-events: auto;
             }
 
-            .header-search-results {
-                height: 400px;
-                background: white;
-                overflow-y: scroll;
-                position: absolute;
-                top: 100%;
-                z-index: 99;
-                border-top: 1px solid #303030;
-                width: 100%;
-                display: none;
-                box-shadow: 0px 4px 5px 1px #181818;
-
-                &.show-results{
-                    display: block;
-                  
-                    /*.spinner-loader{
-                        margin: 0.8em 0 0 4em;
-
-                        @media (max-width: 490px){
-                            margin: 0.2em 0 0 4em;
-                        }
-                    }*/
-
-                   .no-results {
-                        margin: 1em 0 0 0.5em;
-    
-                    }
-
-                    .view-all {
-                        width: 100%;
-                        background: #555;
-                        color: #fff;
-                        text-align: center;
-                        padding: 1em 1.5em;
-
-                        a {
-                            font-size: var(--fs-medium);
-                            color: #fff;
-                        }
-
-                    }
-
-                }
-
-                a{
-                    color: #000
-                }
-
-                .result-content {
-
-                    display: grid;
-                    gap: 1em;
-                    grid-auto-flow: row;
-                    grid-auto-columns: auto;
-                 
-
-                    @include a.atSmall{
-                        grid-auto-flow: column;
-                        grid-auto-columns: 150px 1fr;
-                        gap: 2em;
-                    }
-
-                    img{
-                        width: 150px;
-                    }
-                }
+            &.active {
+                translate: 0;
+                opacity: 1;
+                padding-top: 21px;
+                pointer-events: auto;
             }
+                    
+            &.basket-active {
+                z-index: 1;
+            }
+
+            .search-wrapper {
+                position: relative;
+                display: grid;
+                align-items: center;
+                grid-template-areas: "search-bar";
+
+                &.active {
+                    input {
+                        border-radius: 10px 10px 0 0;
+                        border-bottom: none;
+                    }
+
+                    .close-search {
+                        opacity: 1;
+                        visibility: visible;
+                        pointer-events: auto;
+                    }
+                   
+                }
+
+                 .close-search {
+                    position: absolute;
+                    top: -35px;
+                    right: -13px;
+                    display: flex;
+                    align-items: center;
+                    background: transparent;
+                    border: none;
+                    border-radius: 100vw;
+                    height: 40px;
+                    width: 40px;
+                    opacity: 0;
+                    visibility: hidden;
+                    pointer-events: none;
+                    transition: visibility .4s, opacity .4s;
+
+                    @include a.at992 {
+                        top: -44px;
+                        right: -2px;
+                        display: none;
+                        background: #fff;
+                        svg * {
+                            stroke: #000;
+                        }
+                    }
+
+                    &.active {
+                        visibility: visible;
+                        pointer-events: auto;
+                        opacity: 1;
+                        display: flex;
+                    }
+                }
+                       
+
+                label {
+                    color: #fff;
+                    z-index: 1;
+                    grid-area: search-bar;
+                    padding-left: 1rem;
+                }
+                
+                input {
+                    width: 100%;
+                    border: none;
+                    position: relative;
+                    background: #41414185;
+                    border: 2px solid #fff;
+                    color: #ffffff;
+                    grid-area: search-bar;
+                    padding: .55rem 3.5rem .55rem 1rem;
+                    transition: padding .5s;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+
+                .search-button-wrapper {
+                    grid-area: search-bar;
+                    place-self: end;
+                    z-index: 2;
+
+                    button {
+                        background: transparent;
+                        border: none;
+                        padding: 0;
+
+                        .search-glass {
+                            height: 100%;
+                            display: block;
+                            margin-right: .5em;
+                            margin-top: .15em;
+
+                            svg {
+                                height: 45px;
+                                width: 45px;
+                                padding: .4rem;
+                            }
+                        }
+                    }
+                }
+
+            }
+
         }
+    
     }
 
 }
