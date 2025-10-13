@@ -1,0 +1,111 @@
+@use '../abstracts' as a;
+
+.accordions {
+    margin-top: 2rem;
+    display: grid;
+    gap: 2em;
+
+    .accordion {
+        background: var(--accordion-bg, #efefef);
+        border-radius: 10px;
+        border: 3px solid rgba(0, 0, 0, 0);
+        transition: border-color .5s;
+
+        .accordion-btn {
+            display: grid;
+            grid-template-columns: 1fr max-content;
+            width: 100%;
+            background: var(--accordion-bg, #efefef);
+            border-radius: 10px;
+            border: none;
+            color: #000;
+            align-items: center;
+            font-size: var(--font-size, clamp(1.25rem, 1vw + 1rem, 1.475rem));
+            font-weight: 700;
+            gap: 1em;
+            text-align: left;
+            transition: border-color .5s;
+            padding: .75rem 1rem;
+
+            @include a.at576 {
+                padding: .75rem 1.25rem;
+            }
+
+            svg {
+                width: 45px;
+                height: 40px;
+
+                .accordion-icon-wrap {
+                    transform-origin: center center;
+                    transform-box: fill-box;
+                    transition: rotate .4s;
+                    rotate: 45deg;
+                    * {
+                        stroke: #efefef;
+                    }
+                }
+
+                > path {
+                    fill: #282828;
+                }
+            }
+
+            &.active {
+
+                svg {
+
+                    .accordion-icon-wrap {
+                        rotate: 0deg;
+                        * {
+                            stroke: #000;
+                        }
+                    }
+
+                    > path {
+                        fill: #efefef;
+                    }
+                }
+
+            }
+        }
+
+        .dropdown-categories {
+            display: grid;
+            gap: 1em;
+            grid-template-rows: 0fr;
+            grid-auto-flow: row;
+            visibility: hidden;
+            transition: padding .5s, grid-template-rows .5s, visibility .35s;
+
+            > div {
+                overflow: hidden;
+                display: grid;          
+                gap: 3em;
+                padding: 0 1em;
+                opacity: 0;
+                color: #000;
+                transition: padding .35s, opacity .25s;
+
+                @include a.at576 {
+                    padding: 0rem 1.25rem;
+                }
+            }
+
+            &.active {
+                visibility: visible;
+                grid-template-rows: 1fr;
+
+                > div {
+                    padding: .5rem 1rem 1.5rem 1rem;
+                    opacity: 1;
+
+                    @include a.at576 {
+                        padding: .5rem 1.25rem 1.5rem 1.25rem;
+                    }
+                }
+            }
+        }
+
+    }
+
+}
