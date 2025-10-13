@@ -49,7 +49,7 @@
 
                 <div class="logo">
                     <a href="<?php echo home_url( ) ?>">
-                        <img src="<?php echo get_template_directory_uri() . '/images/logu.png' ?>" />
+                        <img src="<?php echo get_template_directory_uri() . '/images/nnn-logo.png' ?>" />
                     </a>
                 </div>
 
