@@ -16,7 +16,7 @@
         </div>
     </div>
 
-   <img class="hero-img" src="<?php echo get_template_directory_uri() . '/images/test-img2.png' ?>" alt="">
+   <img class="hero-img" src="<?php echo get_template_directory_uri() . '/images/home-hero-img.png' ?>" alt="">
 
 </div>
 
